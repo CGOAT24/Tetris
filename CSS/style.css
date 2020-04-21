@@ -1,0 +1,50 @@
+@keyframes background {
+    0%      {background-color: rgba(138, 43, 226, 0.8)}
+    17%     {background-color: rgba(3, 65, 174, 0.8)}
+    34%     {background-color:rgba(0, 206, 209, 0.8)}
+    51%    {background-color: rgba(50, 205, 50, 0.8)}
+    68%    {background-color: rgba(255, 213, 0, 0.8)}
+    85%    {background-color: rgba(255, 151, 28, 0.8)}
+    100%    {background-color: rgba(255, 50, 19, 0.8)}
+}
+
+body{
+    text-align: center;
+    animation: background 35s linear infinite alternate;
+    font-family: sans-serif;
+    background-size: 1920px 1080px;
+}
+
+canvas{
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+button{
+    border-radius: 5px;
+    border: none;
+    padding: 10px;
+    margin-bottom: 15px;
+    margin-right: 5px;
+    margin-left: 5px;
+    background-color: white;
+}
+
+#game{
+    display: block;
+}
+
+#score{
+    padding: 10px;
+    text-shadow: 1px 1px white;
+    border: 1px solid black;
+    border-radius: 5px;
+    display: inline-block;
+    width: 220;
+    margin: 10px;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+#play{
+    display: none;
+}
