@@ -1,21 +1,27 @@
-/*  TODO
--   ajouter un bouton pause
--   ajouter du son
--   ajouter un scoreboard
--   ajouter diférents thèmes
-*/
-
 var canvas = document.getElementById("tetris");
 var ctx = canvas.getContext("2d");
 ctx.scale(20, 20);
 ctx.fillStyle = "white";
 ctx.fillRect(0, 0, canvas.width, canvas.height);
-
 var placeHolder = document.getElementById("placeholder");
 var ptx = placeHolder.getContext("2d");
 ptx.scale(20, 20);
 ptx.fillStyle = "rgba(0, 0, 0, 0.1)";
 ptx.fillRect(0, 0, placeHolder.width, placeHolder.height);
+const tetriminos = 'ILJOTSZ';
+var current = createTetriminos(tetriminos[Math.floor(Math.random() * 7)]);
+var dropCounter = 0;
+var dropInterval = 1000;
+var lastTime = 0;
+var animation;
+const arena = createMatrix(12, 20);
+const player = {
+    position: {x: 0, y: 0},
+    matrix: null,
+    score: 0
+}
+
+/**************************************************************************************/ 
 
 function arenaSweep(){
     let rowCount = 1;
@@ -169,8 +175,7 @@ function playerMove(dir){
     }
 }
 
-const tetriminos = 'ILJOTSZ';
-var current = createTetriminos(tetriminos[Math.floor(Math.random() * 7)]);
+
 
 function playerReset(){
     let next = createTetriminos(tetriminos[Math.floor(Math.random() * 7)]);
@@ -226,11 +231,7 @@ function rotate(matrix, dir){
     }
 }
 
-var dropCounter = 0;
-var dropInterval = 1000;
 
-var lastTime = 0;
-var animation;
 function update(time = 0){
     let deltaTime = time - lastTime;
     lastTime = time;
@@ -257,22 +258,16 @@ function playGame(){
 
 const colors = [
     null,
-    '#8A2BE2', //purple
-    '#FF971C', //orange
-    '#0341AE', //blue
-    '#00CED1', //cyan
-    '#32CD32', //green
-    '#FF3213', //red 
-    '#FFD500' //yellow
+    '#4f058c',  //purple
+    '#fa7909',  //orange
+    '#0356c2',  //blue
+    '#00CED1',  //cyan
+    '#0f9944',  //green
+    '#ec2029',  //red 
+    '#f6e60b'   //yellow
 ];
 
-const arena = createMatrix(12, 20);
 
-const player = {
-    position: {x: 0, y: 0},
-    matrix: null,
-    score: 0
-}
 
 var controls = document.addEventListener('keydown', event => {
     if(event.keyCode == 37){
@@ -308,14 +303,11 @@ function sound(src) {
     }
   }
 
-var backgroundMusic = new sound('Media/TetrisThemeA.mp3');
-
 function beginGame(){
     gameover = false;
     document.getElementById("start").style.display = "none";
     document.getElementById("play").style.display = "inline";
     playerReset();
-    backgroundMusic.play();
     updateScore();
     update();
 }
